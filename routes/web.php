@@ -5,20 +5,41 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DnbController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\MbbsController;
-use App\Http\Controllers\MdsController;
 use App\Http\Controllers\MdmsController;
+use App\Http\Controllers\MdsController;
 use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeoMetaController;
+use App\Models\Contact;
+use App\Models\Course;
+use App\Models\DnbContent;
+use App\Models\Faq;
+use App\Models\MbbsContent;
+use App\Models\MdmsContent;
+use App\Models\MdsContent;
+use App\Models\Opportunity;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::get('/', function () {
+    return redirect('/login');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard', [
+            'courseCount' => Course::count(),
+            'mbbsCount' => MbbsContent::count(),
+            'mdmsCount' => MdmsContent::count(),
+            'mdsCount' => MdsContent::count(),
+            'dnbCount' => DnbContent::count(),
+            'faqCount' => Faq::count(),
+            'opportunityCount' => Opportunity::count(),
+            'contactCount' => Contact::count(),
+        ]);
     })->name('dashboard');
 
     Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
