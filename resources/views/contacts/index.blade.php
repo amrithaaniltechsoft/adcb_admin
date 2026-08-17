@@ -31,9 +31,6 @@
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h2 class="mt-4 mb-0">Contact List</h2>
-            <button type="button" class="btn btn-success" style="background-color: #dc3545; border-color: #dc3545;" data-toggle="modal" data-target="#contactModal">
-                Add
-            </button>
         </div>
     </div>
 
@@ -88,82 +85,6 @@
                     <p><strong>Working Hours</strong><br><span id="view-contact-working-hours"></span></p>
                     <div id="view-contact-map"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-right" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-white" style="background-color: #dc3545;">
-                    <h5 class="modal-title" id="contactModalLabel">Add Contact</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="POST" action="{{ route('contacts.store') }}">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="slug">Slug</label>
-                            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}" placeholder="e.g. kochi" required>
-                            @error('slug')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="branch">Branch</label>
-                            <input type="text" class="form-control @error('branch') is-invalid @enderror" id="branch" name="branch" value="{{ old('branch') }}" required>
-                            @error('branch')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Office Address</label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3" required>{{ old('address') }}</textarea>
-                            @error('address')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" required>
-                            @error('phone')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="working_hours">Working Hours</label>
-                            <input type="text" class="form-control @error('working_hours') is-invalid @enderror" id="working_hours" name="working_hours" value="{{ old('working_hours') }}" required>
-                            @error('working_hours')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="map_embed_url">Map Embed URL</label>
-                            <textarea class="form-control @error('map_embed_url') is-invalid @enderror" id="map_embed_url" name="map_embed_url" rows="3" placeholder="Optional Google Maps embed URL">{{ old('map_embed_url') }}</textarea>
-                            @error('map_embed_url')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" style="background-color: #dc3545; border-color: #dc3545;">Save</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
