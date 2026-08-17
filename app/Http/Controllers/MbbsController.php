@@ -38,18 +38,18 @@ class MbbsController extends Controller
                     'id' => $content->id,
                     'state' => $content->state,
                     'slug' => $content->slug,
-                'banner_title' => $content->banner_title,
-                'banner_description' => $content->banner_description,
-                'banner_image' => $content->banner_image,
-                'preview_title' => $content->preview_title,
+                    'banner_title' => $content->banner_title,
+                    'banner_description' => $content->banner_description,
+                    'banner_image' => $content->banner_image,
+                    'preview_title' => $content->preview_title,
                     'preview_points' => $content->preview_points,
                     'content' => $content->content,
                     'meta_title' => $content->meta_title,
                     'meta_description' => $content->meta_description,
                     'meta_keywords' => $content->meta_keywords,
-                    'action' => '<button type="button" data-id="' . $content->id . '" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>' .
-                        '<button type="button" data-id="' . $content->id . '" data-state="' . e($content->state) . '" data-banner-title="' . e($content->banner_title ?? '') . '" data-banner-description="' . e($content->banner_description ?? '') . '" data-preview-title="' . e($content->preview_title ?? '') . '" data-preview-points="' . e($content->preview_points ?? '') . '" data-content="' . e($content->content ?? '') . '" data-meta-title="' . e($content->meta_title ?? '') . '" data-meta-description="' . e($content->meta_description ?? '') . '" data-meta-keywords="' . e($content->meta_keywords ?? '') . '" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>' .
-                        '<button type="button" data-id="' . $content->id . '" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
+                    'action' => '<button type="button" data-id="'.$content->id.'" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>'.
+                        '<button type="button" data-id="'.$content->id.'" data-state="'.e($content->state).'" data-banner-title="'.e($content->banner_title ?? '').'" data-banner-description="'.e($content->banner_description ?? '').'" data-preview-title="'.e($content->preview_title ?? '').'" data-preview-points="'.e($content->preview_points ?? '').'" data-content="'.e($content->content ?? '').'" data-meta-title="'.e($content->meta_title ?? '').'" data-meta-description="'.e($content->meta_description ?? '').'" data-meta-keywords="'.e($content->meta_keywords ?? '').'" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>'.
+                        '<button type="button" data-id="'.$content->id.'" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
                 ];
             }),
         ]);

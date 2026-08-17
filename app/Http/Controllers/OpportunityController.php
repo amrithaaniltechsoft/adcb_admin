@@ -32,9 +32,9 @@ class OpportunityController extends Controller
                     'flag' => $opportunity->flag,
                     'flag_url' => $this->resolveUrl($opportunity->flag),
                     'sort_order' => $opportunity->sort_order,
-                    'action' => '<button type="button" data-id="' . $opportunity->id . '" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>' .
-                        '<button type="button" data-id="' . $opportunity->id . '" data-slug="' . e($opportunity->slug) . '" data-title="' . e($opportunity->title) . '" data-description="' . e($opportunity->description) . '" data-image="' . ($opportunity->image ? $this->resolveUrl($opportunity->image) : '') . '" data-flag="' . ($opportunity->flag ? $this->resolveUrl($opportunity->flag) : '') . '" data-sort-order="' . $opportunity->sort_order . '" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>' .
-                        '<button type="button" data-id="' . $opportunity->id . '" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
+                    'action' => '<button type="button" data-id="'.$opportunity->id.'" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>'.
+                        '<button type="button" data-id="'.$opportunity->id.'" data-slug="'.e($opportunity->slug).'" data-title="'.e($opportunity->title).'" data-description="'.e($opportunity->description).'" data-image="'.($opportunity->image ? $this->resolveUrl($opportunity->image) : '').'" data-flag="'.($opportunity->flag ? $this->resolveUrl($opportunity->flag) : '').'" data-sort-order="'.$opportunity->sort_order.'" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>'.
+                        '<button type="button" data-id="'.$opportunity->id.'" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
                 ];
             }),
         ]);
@@ -152,6 +152,14 @@ class OpportunityController extends Controller
             return null;
         }
 
-        return str_starts_with($path, '/') ? $path : request()->root().Storage::url($path);
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        if (str_starts_with($path, '/')) {
+            return request()->root().$path;
+        }
+
+        return request()->root().Storage::url($path);
     }
 }

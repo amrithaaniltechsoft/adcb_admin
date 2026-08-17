@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Database\Factories\SeoMetaFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SeoMeta extends Model
 {
-    /** @use HasFactory<\Database\Factories\SeoMetaFactory> */
+    /** @use HasFactory<SeoMetaFactory> */
     use HasFactory;
 
     protected $fillable = [

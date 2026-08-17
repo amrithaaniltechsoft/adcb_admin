@@ -207,7 +207,7 @@ class MdsController extends Controller
             .'<button type="button" data-id="'.$content->id.'" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>';
     }
 
-    private function normalizeJson(?string $value): array|null
+    private function normalizeJson(?string $value): ?array
     {
         if (blank($value)) {
             return null;

@@ -30,9 +30,9 @@ class ContactController extends Controller
                     'email' => $contact->email,
                     'working_hours' => $contact->working_hours,
                     'map_embed_url' => $contact->map_embed_url,
-                    'action' => '<button type="button" data-id="' . $contact->id . '" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>' .
-                        '<button type="button" data-id="' . $contact->id . '" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>' .
-                        '<button type="button" data-id="' . $contact->id . '" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
+                    'action' => '<button type="button" data-id="'.$contact->id.'" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>'.
+                        '<button type="button" data-id="'.$contact->id.'" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>'.
+                        '<button type="button" data-id="'.$contact->id.'" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
                 ];
             }),
         ]);

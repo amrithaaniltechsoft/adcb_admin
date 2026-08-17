@@ -26,9 +26,9 @@ class FaqController extends Controller
                     'category' => $faq->category,
                     'question' => $faq->question,
                     'answer' => $faq->answer,
-                    'action' => '<button type="button" data-id="' . $faq->id . '" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>' .
-                        '<button type="button" data-id="' . $faq->id . '" data-category="' . e($faq->category) . '" data-question="' . e($faq->question) . '" data-answer="' . e($faq->answer) . '" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>' .
-                        '<button type="button" data-id="' . $faq->id . '" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
+                    'action' => '<button type="button" data-id="'.$faq->id.'" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>'.
+                        '<button type="button" data-id="'.$faq->id.'" data-category="'.e($faq->category).'" data-question="'.e($faq->question).'" data-answer="'.e($faq->answer).'" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>'.
+                        '<button type="button" data-id="'.$faq->id.'" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
                 ];
             }),
         ]);

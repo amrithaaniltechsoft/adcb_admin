@@ -82,9 +82,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 id="view-opportunity-title"></h4>
+                    <h4 id="view-opportunity-title" class="mb-3"></h4>
+                    <div id="view-opportunity-flag" class="mb-3"></div>
                     <div id="view-opportunity-image" class="mb-3"></div>
-                    <p id="view-opportunity-description"></p>
+                    <label class="font-weight-bold">Description:</label>
+                    <p id="view-opportunity-description" style="white-space: pre-line;"></p>
                 </div>
             </div>
         </div>
@@ -246,7 +248,16 @@
                         }
                     },
                     { data: 'title' },
-                    { data: 'description' },
+                    {
+                        data: 'description',
+                        render: function (data) {
+                            if (!data) return '&mdash;';
+                            var cleanText = data.replace(/(\r\n|\n|\r)/gm, ' ');
+                            var truncated = cleanText.length > 70 ? cleanText.substring(0, 70) + '...' : cleanText;
+                            var escapedFullText = cleanText.replace(/"/g, '&quot;');
+                            return '<span title="' + escapedFullText + '">' + $('<div>').text(truncated).html() + '</span>';
+                        }
+                    },
                     {
                         data: 'image_url',
                         orderable: false,
@@ -283,6 +294,12 @@
                 $('#view-opportunity-title').text(row.title);
                 $('#view-opportunity-description').text(row.description);
 
+                if (row.flag_url) {
+                    $('#view-opportunity-flag').html('<img src="' + row.flag_url + '" class="img-fluid" style="max-height: 50px;" />');
+                } else {
+                    $('#view-opportunity-flag').html('');
+                }
+
                 if (row.image_url) {
                     $('#view-opportunity-image').html('<img src="' + row.image_url + '" class="img-fluid" style="max-height: 300px;" />');
                 } else {
@@ -293,15 +310,16 @@
             });
 
             $('#opportunities-table').on('click', '.btn-edit', function () {
-                var opportunityId = $(this).data('id');
+                var row = table.row($(this).closest('tr')).data();
+                var opportunityId = row.id;
 
-                $('#edit_title').val($(this).data('title'));
-                $('#edit_description').val($(this).data('description'));
+                $('#edit_title').val(row.title);
+                $('#edit_description').val(row.description);
                 $('#editOpportunityForm').attr('action', '/opportunities/' + opportunityId);
                 $('#edit_image').val('').next('.custom-file-label').removeClass('selected').html('Choose file');
                 $('#edit_flag').val('').next('.custom-file-label').removeClass('selected').html('Choose file');
 
-                var currentImage = $(this).data('image');
+                var currentImage = row.image_url;
                 if (currentImage) {
                     $('#edit_current_image').attr('src', currentImage);
                     $('#edit_current_image_wrap').show();
@@ -312,7 +330,7 @@
                     $('#edit_image').attr('required', 'required');
                 }
 
-                var currentFlag = $(this).data('flag');
+                var currentFlag = row.flag_url;
                 if (currentFlag) {
                     $('#edit_current_flag').attr('src', currentFlag);
                     $('#edit_current_flag_wrap').show();

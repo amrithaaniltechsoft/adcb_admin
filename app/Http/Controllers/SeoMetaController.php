@@ -27,9 +27,9 @@ class SeoMetaController extends Controller
                     'meta_title' => $seoMeta->meta_title,
                     'meta_description' => $seoMeta->meta_description,
                     'meta_keywords' => $seoMeta->meta_keywords,
-                    'action' => '<button type="button" data-id="' . $seoMeta->id . '" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>' .
-                        '<button type="button" data-id="' . $seoMeta->id . '" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>' .
-                        '<button type="button" data-id="' . $seoMeta->id . '" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
+                    'action' => '<button type="button" data-id="'.$seoMeta->id.'" class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>'.
+                        '<button type="button" data-id="'.$seoMeta->id.'" class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>'.
+                        '<button type="button" data-id="'.$seoMeta->id.'" class="btn btn-sm btn-danger btn-delete" title="Delete"><i class="fas fa-trash"></i></button>',
                 ];
             }),
         ]);

@@ -27,16 +27,16 @@ class CourseController extends Controller
                 $dnbAttrs = '';
 
                 if ($isDnb && $dnb) {
-                    $dnbAttrs = ' data-dnb-banner-title="' . e($dnb->banner_title ?? '') . '" data-dnb-banner-description="' . e($dnb->banner_description ?? '') . '" data-dnb-intro-title="' . e($dnb->intro_title ?? '') . '" data-dnb-intro-description="' . e($dnb->intro_description ?? '') . '" data-dnb-specialties="' . e($dnb->specialties ?? '') . '" data-dnb-meta-title="' . e($dnb->meta_title ?? '') . '" data-dnb-meta-description="' . e($dnb->meta_description ?? '') . '" data-dnb-meta-keywords="' . e($dnb->meta_keywords ?? '') . '"';
+                    $dnbAttrs = ' data-dnb-banner-title="'.e($dnb->banner_title ?? '').'" data-dnb-banner-description="'.e($dnb->banner_description ?? '').'" data-dnb-intro-title="'.e($dnb->intro_title ?? '').'" data-dnb-intro-description="'.e($dnb->intro_description ?? '').'" data-dnb-specialties="'.e($dnb->specialties ?? '').'" data-dnb-meta-title="'.e($dnb->meta_title ?? '').'" data-dnb-meta-description="'.e($dnb->meta_description ?? '').'" data-dnb-meta-keywords="'.e($dnb->meta_keywords ?? '').'"';
                 }
 
-                $courseAttrs = 'data-id="' . $course->id . '" data-name="' . e($course->name) . '" data-code="' . e($course->code ?? '') . '" data-title="' . e($course->title ?? '') . '" data-description="' . e($course->description ?? '') . '" data-image="' . e($this->resolveUrl($course->image) ?? '') . '" data-href="' . e($course->href ?? '') . '" data-sort-order="' . e($course->sort_order ?? '') . '" data-featured="' . ($course->featured ? '1' : '0') . '"';
+                $courseAttrs = 'data-id="'.$course->id.'" data-name="'.e($course->name).'" data-code="'.e($course->code ?? '').'" data-title="'.e($course->title ?? '').'" data-description="'.e($course->description ?? '').'" data-image="'.e($this->resolveUrl($course->image) ?? '').'" data-href="'.e($course->href ?? '').'" data-sort-order="'.e($course->sort_order ?? '').'" data-featured="'.($course->featured ? '1' : '0').'"';
 
                 return [
                     'id' => $course->id,
                     'name' => $course->name,
-                    'action' => '<button type="button" ' . $courseAttrs . $dnbAttrs . ' class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>' .
-                        '<button type="button" ' . $courseAttrs . $dnbAttrs . ' class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>',
+                    'action' => '<button type="button" '.$courseAttrs.$dnbAttrs.' class="btn btn-sm btn-info mr-1 btn-view" title="View"><i class="fas fa-eye"></i></button>'.
+                        '<button type="button" '.$courseAttrs.$dnbAttrs.' class="btn btn-sm btn-warning mr-1 btn-edit" title="Edit"><i class="fas fa-edit"></i></button>',
                 ];
             }),
         ]);

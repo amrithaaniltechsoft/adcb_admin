@@ -1,14 +1,17 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+use App\Models\User;
+use Illuminate\Contracts\Console\Kernel;
 
-$app = require __DIR__ . '/../bootstrap/app.php';
-$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+require __DIR__.'/../vendor/autoload.php';
 
-$user = App\Models\User::create([
+$app = require __DIR__.'/../bootstrap/app.php';
+$app->make(Kernel::class)->bootstrap();
+
+$user = User::create([
     'name' => 'Admin',
     'email' => 'admin@gmail.com',
     'password' => 'admin123',
 ]);
 
-echo 'Created user ID: ' . $user->id . PHP_EOL;
+echo 'Created user ID: '.$user->id.PHP_EOL;
