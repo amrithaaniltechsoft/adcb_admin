@@ -78,8 +78,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5 id="view-faq-question"></h5>
-                    <p id="view-faq-answer"></p>
+                    <label class="font-weight-bold text-muted">Question</label>
+                    <h5 id="view-faq-question" class="mb-4"></h5>
+                    <label class="font-weight-bold text-muted">Answer</label>
+                    <p id="view-faq-answer" style="white-space: pre-line;"></p>
                 </div>
             </div>
         </div>
@@ -199,8 +201,26 @@
                         }
                     },
                     { data: 'category' },
-                    { data: 'question' },
-                    { data: 'answer' },
+                    {
+                        data: 'question',
+                        render: function (data) {
+                            if (!data) return '&mdash;';
+                            var cleanText = data.replace(/(\r\n|\n|\r)/gm, ' ');
+                            var truncated = cleanText.length > 50 ? cleanText.substring(0, 50) + '...' : cleanText;
+                            var escaped = cleanText.replace(/"/g, '&quot;');
+                            return '<span title="' + escaped + '">' + $('<div>').text(truncated).html() + '</span>';
+                        }
+                    },
+                    {
+                        data: 'answer',
+                        render: function (data) {
+                            if (!data) return '&mdash;';
+                            var cleanText = data.replace(/(\r\n|\n|\r)/gm, ' ');
+                            var truncated = cleanText.length > 70 ? cleanText.substring(0, 70) + '...' : cleanText;
+                            var escaped = cleanText.replace(/"/g, '&quot;');
+                            return '<span title="' + escaped + '">' + $('<div>').text(truncated).html() + '</span>';
+                        }
+                    },
                     {
                         data: 'action',
                         orderable: false,
@@ -219,11 +239,12 @@
             });
 
             $('#faqs-table').on('click', '.btn-edit', function () {
-                var faqId = $(this).data('id');
+                var row = table.row($(this).closest('tr')).data();
+                var faqId = row.id;
 
-                $('#edit_category').val($(this).data('category') || '');
-                $('#edit_question').val($(this).data('question'));
-                $('#edit_answer').val($(this).data('answer'));
+                $('#edit_category').val(row.category || '');
+                $('#edit_question').val(row.question);
+                $('#edit_answer').val(row.answer);
                 $('#editFaqForm').attr('action', '/faqs/' + faqId);
 
                 $('#editFaqModal').modal('show');
