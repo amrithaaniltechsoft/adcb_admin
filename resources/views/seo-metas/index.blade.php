@@ -31,9 +31,6 @@
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h2 class="mt-4 mb-0">SEO Meta List</h2>
-            <button type="button" class="btn btn-success" style="background-color: #dc3545; border-color: #dc3545;" data-toggle="modal" data-target="#seoMetaModal">
-                Add
-            </button>
         </div>
     </div>
 
@@ -84,58 +81,6 @@
                     <p><strong>Meta Description:</strong><br><span id="view-seo-meta-description"></span></p>
                     <p><strong>Meta Keywords:</strong><br><span id="view-seo-meta-keywords"></span></p>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="seoMetaModal" tabindex="-1" role="dialog" aria-labelledby="seoMetaModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-right" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-white" style="background-color: #dc3545;">
-                    <h5 class="modal-title" id="seoMetaModalLabel">Add SEO Meta</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="POST" action="{{ route('seo-metas.store') }}">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="page_name">Page Name</label>
-                            <input type="text" class="form-control @error('page_name') is-invalid @enderror" id="page_name" name="page_name" value="{{ old('page_name') }}" placeholder="e.g. home, about, contact" required>
-                            @error('page_name')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="meta_title">Meta Title</label>
-                            <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" value="{{ old('meta_title') }}">
-                            @error('meta_title')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="meta_description">Meta Description</label>
-                            <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" rows="4">{{ old('meta_description') }}</textarea>
-                            @error('meta_description')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="meta_keywords">Meta Keywords</label>
-                            <textarea class="form-control @error('meta_keywords') is-invalid @enderror" id="meta_keywords" name="meta_keywords" rows="3" placeholder="comma separated">{{ old('meta_keywords') }}</textarea>
-                            @error('meta_keywords')
-                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" style="background-color: #dc3545; border-color: #dc3545;">Save</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
