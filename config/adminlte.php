@@ -320,9 +320,9 @@ return [
 
         // Sidebar items:
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => 'Blog',
+            'route' => 'blogs.index',
+            'icon' => 'fas fa-fw fa-blog',
         ],
         [
             'text' => 'Opportunities',

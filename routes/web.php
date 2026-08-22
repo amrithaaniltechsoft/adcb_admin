@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DnbController;
 use App\Http\Controllers\FaqController;
@@ -41,6 +42,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'contactCount' => Contact::count(),
         ]);
     })->name('dashboard');
+
+    Route::get('/admin/blog', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('/admin/blog/data', [BlogController::class, 'data'])->name('blogs.data');
+    Route::post('/admin/blog', [BlogController::class, 'store'])->name('blogs.store');
+    Route::put('/admin/blog/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::delete('/admin/blog/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 
     Route::get('/opportunities', [OpportunityController::class, 'index'])->name('opportunities.index');
     Route::get('/opportunities/data', [OpportunityController::class, 'data'])->name('opportunities.data');

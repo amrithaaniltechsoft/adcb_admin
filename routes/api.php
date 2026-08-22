@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DnbController;
 use App\Http\Controllers\FaqController;
@@ -24,4 +25,6 @@ Route::prefix('v1')->group(function (): void {
     Route::get('mds', [MdsController::class, 'publicIndex']);
     Route::get('mds/{slug}', [MdsController::class, 'publicShow']);
     Route::get('dnb', [DnbController::class, 'publicShow']);
+    Route::get('blogs', [BlogController::class, 'publicIndex']);
+    Route::get('blogs/{slug}', [BlogController::class, 'publicShow']);
 });
